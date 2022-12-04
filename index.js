@@ -7,6 +7,8 @@ const axios = require("axios")
 
 const app= express();
 app.use(bodyParser.urlencoded({extended:true}));
+const port = process.env.PORT || 5000;
+
 
 app.set('view engine','ejs')
 
@@ -203,8 +205,7 @@ app.post("/admin",(req,res)=>{
 
 //extra
 
-app.listen(process.env.PORT,function() {
+app.listen(port,function() {
     console.log(`server is running`)
 })
-
 
