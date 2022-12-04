@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>result</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+</head>
+<style>
+    *{
+        margin: 0;
+    }
+    body{
+        
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    h1{
+        background-color: greenyellow;
+    }
+    .btn{
+        border-radius: 6px;
+        background-color: rgb(23, 180, 238);
+        color: white;
+        margin-top: 20px;
+    }
+    .btn:hover{
+        background-color: green;
+        color: white;
+    }
+    .table{
+        border: 1px solid burlywood;
+        width: 80%;
+        margin: 0px auto 0px auto;
+    }
+   
+</style>
+<body>
+    <h1>Update Student</h1>
+    <!-- <form action="/result" method="post">
+        
+        <input type="text" name="REG" placeholder="Enter your Registration Number"  required>
+        <br>
+        <br>
+        <input type="text" name="DOB" placeholder="Enter your date of birth : DD/MM/YY" required>
+        <br>
+        <br>
+        <button class="btn" name="submit" type="submit">View Result</button>
+    </form> -->
+    <br>
+    <table class="table">
+        <form action="" method="post">
+            <tr>
+                <th><label for="name"  >Name of Student</label></th>
+                <td><input type="text" name="name" value="<%= onestudent.name %>" placeholder="Alex Minch"  required></td>
+            </tr>
+            <tr>
+                <th><label for="father">Father's Name</label></th>
+                <td><input type="text" name="father" value="<%= onestudent.father %>" placeholder="Benjamin Minch"  required></td>
+            </tr>
+            <tr>
+                <th><label for="reg">Registration Number</label></th>
+                <td><input type="number" name="reg" value="<%= onestudent.reg %>" placeholder="211704001"  required></td>
+            </tr>
+            <tr>
+                <th><label for="class">Class</label></th>
+                <td><input type="text" name="class" value="<%= onestudent.class %>" placeholder="12th"  required></td>
+            </tr>
+            <tr>
+                <th><label for="dob">Date of Birth</label></th>
+                <td><input type="text" name="dob" value="<%= onestudent.dob %>" placeholder="03.07.2000"  required></td>
+            </tr>
+            
+            <table class="table">
+                <tr>
+                    <th><label for="phy">Physics Theory Score</label></th>
+                    <td><input type="number" name="phy" value="<%= onestudent.phy %>" placeholder="56"  required></td>
+                    <th><label for="phyp">Physics Practical Score</label></th>
+                    <td><input type="number" name="phyp" value="<%= onestudent.phyp %>" placeholder="26"  required></td>                     
+                </tr>
+                <tr>
+                    <th><label for="chem">Chemistry Theory Score</label></th>
+                    <td><input type="number" name="chem" value="<%= onestudent.chem %>" placeholder="56"  required></td>
+                    <th><label for="chemp">Chemistry Practical Score</label></th>
+                    <td><input type="number" name="chemp" value="<%= onestudent.chemp %>" placeholder="26"  required></td>                     
+                </tr>
+                <tr>
+                    <th><label for="maths">Maths Theory Score</label></th>
+                    <td><input type="number" name="maths" value="<%= onestudent.maths %>" placeholder="56"  required></td>
+                    <th><label for="mathsp">Maths Practical Score</label></th>
+                    <td><input type="number" name="mathsp" value="<%= onestudent.mathsp %>" placeholder="26"  required></td>                     
+                </tr>
+                <tr>
+                    <th><label for="eng">English Theory Score</label></th>
+                    <td><input type="number" name="eng" value="<%= onestudent.eng %>" placeholder="56"  required></td>
+                    <th><label for="engp">English Practical Score</label></th>
+                    <td><input type="number" name="engp" value="<%= onestudent.engp %>" placeholder="26"  required></td>                     
+                </tr>
+                <tr>
+                    <th><label for="hindi">Hindi Theory Score</label></th>
+                    <td><input type="number" name="hindi" value="<%= onestudent.hindi %>" placeholder="56"  required></td>
+                    <th><label for="hindip">Hindi Practical Score</label></th>
+                    <td><input type="number" name="hindip" value="<%= onestudent.hindip %>" placeholder="26"  required></td>                     
+                </tr>
+            </table>
+            <button class="btn"  type="submit" onclick="uppow()" >UPDATE</button>
+        </form>
+    </table>
+    
+
+
+    <script>
+       function uppow()
+       {
+        alert("updated successfully");
+       }
+      </script>
+</body>
+</html>

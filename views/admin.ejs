@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+</head>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<style>
+  
+    *{
+        margin: 0px;
+    }
+    h1{
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: greenyellow;
+    }
+    #admin{
+        padding-right: 25px;
+        padding-top: 15px;
+        display: flex;
+        justify-content: right;
+
+        
+        
+    }
+    
+    #admin > span{
+        margin-left: 7px;
+        margin-top: -2px;        
+    }
+    #addstudent{
+      margin-left: 25px;
+      margin-bottom: 15px;
+      display: inline-block;
+      border: 2px solid #c11d1d;
+      background-color: cyan;
+    }
+    #addstudent:hover{
+      background-color: rgb(43, 227, 43);  
+       
+    }
+   #addstudent > a{
+    text-decoration: none;
+   }
+   #sst{
+    margin-left: 7px;
+   }
+    
+    .btnn{
+       border: 0.5px solid rgb(232, 226, 226);
+       background-color: white;
+    }
+    .btnn:hover{
+      background-color: red;
+    }
+    #tablehead{
+      background-color: black;
+      color: beige;
+    }
+    .otherrows:hover{
+      background-color: green;
+      color: white;
+    }
+   
+</style>
+<body>    
+    <h1>Student Management</h1>
+    <div id="admin">admin <span class="material-symbols-outlined">manage_accounts</span></div>  
+    <div id="addstudent"><a href="/addstudent0907u097adfj9000">Add Student<span id="sst" class="material-symbols-outlined">person_add</span> </a> </div>  
+
+    <div >
+    <table class="table">
+        <thead>
+          <tr id="tablehead">
+            <th scope="col">#</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Registration Number</th>
+            <th scope="col">Date Of Birth</th>
+            <th > &nbsp;&nbsp; Action</th>
+          </tr>
+        </thead>
+        <tbody>
+<% for(var i=0;i<students.length;i++) { %>
+          <tr class="otherrows">
+            <th scope="row"><%= i+1 %></th>
+            <td><%= students[i].name %></td>
+            <td><%= students[i].reg %></td>
+            <td><%= students[i].dob %></td>
+            <td><button class="btnn"><a href="/update<%=students[i]._id%>"><span class="material-symbols-outlined" style=" align-items: center; "  >edit</span></a></button>
+            <button class="btnn" onclick="popupnow()"  ><a href="/delete<%=students[i]._id%>"><span class="material-symbols-outlined" style=" align-items: center;" >delete</span></a></button></td>
+            </tr>
+
+<%  } %>
+          <!-- <tr class="otherrows">
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>211704002</td>
+            <td>02.06.2002</td>
+            <td><button class="btnn"><span class="material-symbols-outlined">edit</span></button>
+            <button class="btnn"><span class="material-symbols-outlined">delete</span></button></td>
+          </tr>
+          <tr class="otherrows">
+            <th scope="row">3</th>
+            <td>Aastha</td>
+            <td>2111704003</td>
+            <td>03.04.1999</td>
+            <td><button class="btnn"><span class="material-symbols-outlined">edit</span></button>
+            <button class="btnn"><span class="material-symbols-outlined">delete</span></button></td>
+          </tr>
+          <tr class="otherrows">
+            <th scope="row">4</th>
+            <td>Nikhil</td>
+            <td>2111704004</td>
+            <td>01.04.1999</td>
+            <td><button class="btnn"><span class="material-symbols-outlined">edit</span></button>
+            <button class="btnn"><span class="material-symbols-outlined">delete</span></button></td>
+          </tr>
+          <tr class="otherrows">
+            <th scope="row">5</th>
+            <td>Robin</td>
+            <td>2111704005</td>
+            <td>21.09.1999</td>
+            <td><button class="btnn"><span class="material-symbols-outlined">edit</span></button>
+            <button class="btnn"><span class="material-symbols-outlined">delete</span></button></td>
+          </tr>
+          <tr class="otherrows">
+            <th scope="row">6</th>
+            <td>Apurva</td>
+            <td>2111704006</td>
+            <td>25.07.2000</td>
+            <td><button class="btnn"><span class="material-symbols-outlined">edit</span></button>
+            <button class="btnn"><span class="material-symbols-outlined">delete</span></button></td>
+          </tr>  -->
+        </tbody>
+      </table>
+
+    </div>
+<!-- 
+  <% for(var i=0;i<students.length;i++) { %>
+  <%= students[i].name %>    
+  <%= students[i].reg %>    
+  <%= students[i].dob %>   
+  <br> 
+<%  } %> -->
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script>
+  function popupnow()
+  {
+    alert("deleted succefully");
+  }
+  
+</script>
+</body>
+</html>
