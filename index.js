@@ -42,7 +42,7 @@ const Movie = mongoose.model('Movie',moviesSchema)
 //working on mongoose
 
 app.get('/',(req,res) =>{
-res.sendFile(__dirname + 'fronted/findex.html')
+res.sendFile(__dirname + 'findex.html')
 })
 
 /*app.get("/result",(req,res)=>{
