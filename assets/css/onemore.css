@@ -1,0 +1,21 @@
+#logoo{
+ 
+    width: 143px;
+    margin: -25px;
+  }
+  .navbar{
+    background-color: #ededed;
+  }
+  .box{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+  }
+  @media only screen and (max-width: 654px) {
+
+  .box{
+    display: block;
+    margin-left: 12vw;
+    margin-right: 12px;
+  }
+  }

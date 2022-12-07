@@ -7,6 +7,9 @@ const axios = require("axios")
 
 const app= express();
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(express.static( __dirname + '/assets'));
+
+
 const port = process.env.PORT || 5000;
 
 
@@ -42,7 +45,7 @@ const Movie = mongoose.model('Movie',moviesSchema)
 //working on mongoose
 
 app.get('/',(req,res) =>{
-res.sendFile(__dirname + '/tindex.html')
+res.sendFile(__dirname + '/index.html')
 })
 
 /*app.get("/result",(req,res)=>{
