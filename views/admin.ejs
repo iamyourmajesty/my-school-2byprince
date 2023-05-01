@@ -30,8 +30,12 @@
     }
     
     #admin > span{
-        margin-left: 7px;
+        margin-left: -8px;
         margin-top: -2px;        
+    }
+    #admin > a{
+        color: red;
+        text-decoration: none;
     }
     #addstudent{
       margin-left: 25px;
@@ -70,7 +74,9 @@
 </style>
 <body>    
     <h1>Student Management</h1>
-    <div id="admin">admin <span class="material-symbols-outlined">manage_accounts</span></div>  
+    <!-- <div id="admin">Logout<span class="material-symbols-outlined"><span class="material-symbols-outlined">logout</span></span></div>   -->
+    <div id="admin"><a href="/logout">Logout<span class="material-symbols-outlined"><span class="material-symbols-outlined">logout</span> </a> </div>  
+
     <div id="addstudent"><a href="/addstudent0907u097adfj9000">Add Student<span id="sst" class="material-symbols-outlined">person_add</span> </a> </div>  
 
     <div >

@@ -5,21 +5,52 @@ const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 const axios = require("axios")
 
-const app= express();
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(express.static( __dirname + '/assets'));
+const cookieParser = require("cookie-parser");
+const sessions = require('express-session');
 
+const app= express();
 
 const port = process.env.PORT || 5000;
 
+const oneDay = 1000 * 60 * 60 * 24;
+
+//session middleware
+app.use(sessions({
+    secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+    saveUninitialized:true,
+    cookie: { maxAge: oneDay },
+    resave: true
+}));
+
+// parsing the incoming data
+app.use(express.json());
+app.use(bodyParser.urlencoded({extended:true}));
+
+//serving public file
+app.use(express.static( __dirname + '/assets'));
+
+
+// cookie parser middleware
+app.use(cookieParser());
 
 app.set('view engine','ejs')
+
+
+// User Object
+const user = {
+    email: "princepandey2784@gmail.com",
+    password : "9534157445"
+};
+
+// a variable to save a session
+var session;
+
 
 // working on mongoose 
 mongoose.connect('mongodb+srv://prince:princepandey@cluster0.zppwoij.mongodb.net/?retryWrites=true&w=majority').then(()=>{
     console.log("connected to mongodb atlas successfully");
 }).catch((err)=>{
-    console.log(`you got an error : ${err}`);
+    console.log(`Can't connected to the database : ${err}`);
 })
 
 const moviesSchema = {
@@ -72,9 +103,27 @@ app.get("/admin",(req,res)=>{
 })
 */
 
-app.get("/admin",(req,res)=>{
-    res.sendFile(__dirname + '/admin.html')
-})
+// app.get("/admin",(req,res)=>{
+//     res.sendFile(__dirname + '/admin.html')
+// })
+
+app.get('/admin',(req,res) => {
+    session=req.session;
+    if(session.user){
+        Movie.find({},function(err,movies){
+            res.render('admin',{
+                students : movies
+            })
+        })
+        // console.log("saved");
+    }
+    else
+    {
+        res.sendFile(__dirname + '/admin.html')
+        // console.log("nothing saved");
+    }
+    
+});
 
 
 
@@ -128,7 +177,6 @@ app.post("/result",(req,res)=>{
 //         moviesList : movies
 //     })
 // })
-
 
 
 
@@ -190,23 +238,47 @@ app.post("/update:id",(req,res)=>{
     res.redirect('admin')
 })
 
-app.post("/admin",(req,res)=>{
-    // console.log(req.body.email);
-    // console.log(req.body.password);
-    if(req.body.email==="princepandey2784@gmail.com" && req.body.password==="9534157445"){
+// app.post("/admin",(req,res)=>{
+//     // console.log(req.body.email);
+//     // console.log(req.body.password);
+//     if(req.body.email==="princepandey2784@gmail.com" && req.body.password==="9534157445"){
+//         Movie.find({},function(err,movies){
+//             res.render('admin',{
+//                 students : movies
+//             })
+//         })
+//     }
+//     else{
+//         res.sendFile(__dirname + '/wrong.html')
+//     }
+// })
+
+
+app.post('/admin',(req,res) => {
+    if(req.body.email == user.email && req.body.password == user.password){
+        // session=req.session;
+        // session.userid=req.body.username;
+        req.session.user = user;
+        req.session.save();
+        // console.log(req.session)
         Movie.find({},function(err,movies){
             res.render('admin',{
                 students : movies
             })
-        })
+        })        
     }
     else{
         res.sendFile(__dirname + '/wrong.html')
     }
 })
 
+// Logout page
+app.get("/logout", (req, res) => {
+    req.session.destroy();
+    res.sendFile(__dirname + '/admin.html')
+});
+ 
 
-//extra
 
 app.listen(port,function() {
     console.log(`server is running`)
